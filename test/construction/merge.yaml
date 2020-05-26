@@ -1,0 +1,6 @@
+- &CENTER
+  x: 1
+  y: 2
+- <<: *CENTER
+  r: 10
+  x: 4

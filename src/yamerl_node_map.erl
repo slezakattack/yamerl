@@ -39,7 +39,8 @@
     try_construct_token/3,
     construct_token/3,
     construct_node/3,
-    node_pres/1
+    node_pres/1,
+    set_kv/4
   ]).
 
 -define(TAG, "tag:yaml.org,2002:map").
@@ -147,9 +148,9 @@ new_builder(Constr) ->
             Map#map_builder{data = maps:new()}
     end.
 
-finalize_builder(#map_builder{data = Map}) when is_list(Map) ->
+finalize_builder(#map_builder{data = Map, format = proplist}) ->
     lists:reverse(Map);
-finalize_builder(#map_builder{data = Map}) ->
+finalize_builder(#map_builder{data = Map, format = map}) ->
     Map.
 
 set_kv(#yamerl_constr{detailed_constr = false},
